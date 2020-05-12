@@ -28,17 +28,17 @@ pipeline {
 			}
 		}
 
-		stage('Set current kubectl context') {
+		stage('Set kubectl context to blue cluster') {
 			steps {
 				withAWS(region:'us-east-2', credentials:'jenkins-aws') {
 					sh '''
-						kubectl config use-context arn:aws:eks:us-east-2:364071744232:cluster/capstonebluecluster
+						kubectl config use-context arn:aws:eks:us-east-2:364071744232:cluster/blue-cluster
 					'''
 				}
 			}
 		}
 
-		stage('Create blue container') {
+		stage('Run blue container') {
 			steps {
 				withAWS(region:'us-east-2', credentials:'jenkins-aws') {
 					sh '''
@@ -48,7 +48,7 @@ pipeline {
 			}
 		}
 
-		stage('Expose container') {
+		stage('Expose container port') {
 			steps {
 				withAWS(region:'us-east-2', credentials:'jenkins-aws') {
 					sh '''
@@ -58,7 +58,7 @@ pipeline {
 			}
 		}
 
-		stage('setup LoadBalancer ') {
+		stage('setup LoadBalancer') {
 			steps {
 				withAWS(region:'us-east-2', credentials:'jenkins-aws') {
 					sh '''
