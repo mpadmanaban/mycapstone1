@@ -46,7 +46,7 @@ pipeline {
 						kubectl config use-context arn:aws:eks:us-east-2:364071744232:cluster/blue-cluster
 						kubectl expose deployment bluecapstone --type=LoadBalancer --port=80 --name capstonelb
 						sh ./switchRoute53.sh capstonelb
-					'''						
+					'''
 				}
 			}
 		}
@@ -77,7 +77,7 @@ pipeline {
 						kubectl config use-context arn:aws:eks:us-east-2:364071744232:cluster/green-cluster
 						kubectl expose deployment greencapstone --type=LoadBalancer --port=80 --name capstonelb
 						sh ./switchRoute53.sh capstonelb
-					'''						
+					'''
 				}
 			}
 		}
