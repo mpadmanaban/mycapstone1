@@ -70,7 +70,7 @@ pipeline {
 				withAWS(region:'us-east-2', credentials:'jenkins-aws') {
 					sh '''
 						kubectl config use-context arn:aws:eks:us-east-2:364071744232:cluster/green-cluster
-						kubectl apply -f ./blue-controller.json
+						kubectl apply -f ./green-controller.json
 					'''
 				}
 			}
