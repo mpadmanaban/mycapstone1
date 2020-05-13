@@ -46,7 +46,7 @@ pipeline {
 						kubectl config use-context arn:aws:eks:us-east-2:364071744232:cluster/blue-cluster
 						kubectl expose deployment bluecapstone --type=LoadBalancer --port=80 --name capstonelb
 						chmod +x ./switchRoute53.sh
-						./switchRoute53.sh capstonelb
+						./switchRoute53.sh capstonelb blue
 					'''
 				}
 			}
