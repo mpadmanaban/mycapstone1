@@ -46,12 +46,11 @@ pipeline {
 			steps {
 				withAWS(region:'us-east-2', credentials:'jenkins-aws') {
 					sh '''
-						kubectl config use-context arn:aws:eks:us-east-2:364071744232:cluster/blue-cluster
-						kubectl apply -f ./blue-loadbalancer.json
+						kubectl config use-context arn:aws:eks:us-east-2:364071744232:cluster/blue-cluster						
 						kubectl delete service bluelb || :
 						kubectl expose replicationcontroller blue --type=LoadBalancer --name bluelb
 						chmod +x ./switchRoute53.sh
-						./switchRoute53.sh capstonelb blue
+						./switchRoute53.sh bluelb blue
 					'''
 				}
 			}
@@ -80,11 +79,10 @@ pipeline {
 			steps {
 				withAWS(region:'us-east-2', credentials:'jenkins-aws') {
 					sh '''
-						kubectl config use-context arn:aws:eks:us-east-2:364071744232:cluster/green-cluster
-						kubectl apply -f ./green-loadbalancer.json
+						kubectl config use-context arn:aws:eks:us-east-2:364071744232:cluster/green-cluster						
 						kubectl delete service greenlb || :
 						kubectl expose replicationcontroller green --type=LoadBalancer --name greenlb
-						./switchRoute53.sh capstonelb green
+						./switchRoute53.sh greenlb green
 					'''
 				}
 			}
