@@ -3,8 +3,10 @@ pipeline {
 	stages {
 		stage('Linting') {
 			steps {
-				sh 'tidy -q -e *.html'
-				hadolint Dockerfile
+				sh '''
+					tidy -q -e *.html
+					hadolint Dockerfile
+				'''
 			}
 		}
 		
