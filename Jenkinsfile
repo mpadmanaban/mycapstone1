@@ -84,7 +84,7 @@ pipeline {
 						kubectl apply -f ./green-loadbalancer.json
 						kubectl delete service greenlb || :
 						kubectl expose replicationcontroller green --type=LoadBalancer --name greenlb
-						sh ./switchRoute53.sh capstonelb green
+						./switchRoute53.sh capstonelb green
 					'''
 				}
 			}
