@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #script to change Route53 name
 #Pass in the ExternalDNS Alias name to switch the Route53 alias to
 serviceName=$1
