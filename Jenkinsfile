@@ -49,7 +49,7 @@ pipeline {
 						kubectl config use-context arn:aws:eks:us-east-2:364071744232:cluster/blue-cluster
 						kubectl apply -f ./blue-loadbalancer.json
 						kubectl delete service bluelb || :
-						kubectl expose replicationcontroller bluelb --type=LoadBalancer
+						kubectl expose replicationcontroller blue --type=LoadBalancer --name bluelb
 						chmod +x ./switchRoute53.sh
 						./switchRoute53.sh capstonelb blue
 					'''
